@@ -27,5 +27,7 @@ public class Logger : MonoBehaviour
         // Debug the data from the Hand Tracking Input class
         Debug.Log(handTrackingInput.handTrackingData[0].ToString() + ',' + handTrackingInput.handTrackingData[1].ToString() + "," + handTrackingInput.handTrackingData[2].ToString());
         //Debug.Log("NORM: " + dataHandler.convertHandTrackedData(handTrackingInput.handTrackingData));
+
+        
     }
 }
