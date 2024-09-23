@@ -2810,7 +2810,7 @@ public class ZEDManager : MonoBehaviour
         UpdateImages(); //Image is updated first so we have its timestamp for latency compensation.
 
         UpdateHmdPose(); //Store the HMD's pose at the current timestamp.
-        //UpdateTracking(); //Apply position/rotation changes to zedRigRoot.  // CHANGED BY DAMITH (COMMENTED OUT)
+        UpdateTracking(); //Apply position/rotation changes to zedRigRoot.  // CHANGED BY DAMITH (COMMENTED OUT)
         UpdateObjectDetection(); //Update od if activated
         UpdateBodiesTracking(); // Update bt if actived
         UpdateMapping(); //Update mapping if activated
