@@ -24,13 +24,28 @@ public class compute_hand_control_v2 : MonoBehaviour
     private float elapsedTime = 0.0f;
 
     // Store distance values
-    private float dist4_8 = 0.0f;
-    private float dist12_0 = 0.0f;
-    private float dist16_0 = 0.0f;
-    private float dist20_0 = 0.0f;
+    [SerializeField] private float dist4_8 = 0.0f;
+    [SerializeField] private float dist12_0 = 0.0f;
+    [SerializeField] private float dist16_0 = 0.0f;
+    [SerializeField] private float dist20_0 = 0.0f;
 
     // Define the name of the .txt file
     private string fileName = "OmniDirectionalCtrl.txt";
+
+    // Define GameObject to store the flag sphere
+    [SerializeField] private GameObject flagSphere;
+
+    // Define materials
+    [SerializeField] private Material greenMat;
+    [SerializeField] private Material redMat;
+
+    // Define hand gesture thresholds
+    private float dist4_8_thresh = 0.01f;
+    private float dist12_0_thresh = 0.09f;
+    private float dist16_0_thresh = 0.09f;
+    private float dist20_0_thresh = 0.09f;
+    [SerializeField] private string detectionState = "NONE";
+
 
     void Start()
     {
@@ -62,6 +77,29 @@ public class compute_hand_control_v2 : MonoBehaviour
 
         // Update time
         elapsedTime += Time.deltaTime;
+
+
+
+        // Compute gestures
+        if (dist4_8 < dist4_8_thresh)
+        {
+            if ((dist4_8 < dist4_8_thresh) && (dist12_0 < dist12_0_thresh) && (dist16_0 < dist16_0_thresh) && (dist20_0 < dist20_0_thresh))
+            {
+                flagSphere.GetComponent<MeshRenderer>().material = greenMat;
+                detectionState = "DETECTED";
+            }
+            else
+            {
+                flagSphere.GetComponent<MeshRenderer>().material = redMat;
+                detectionState = "NONE";
+            }
+        }
+        else
+        {
+            
+        }
+
+        
     }
 
     private void addRecord(string filePath)
