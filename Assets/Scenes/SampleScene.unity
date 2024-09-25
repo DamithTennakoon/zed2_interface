@@ -67785,7 +67785,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1149748764}
   - component: {fileID: 1149748765}
-  - component: {fileID: 1149748766}
   - component: {fileID: 1149748763}
   m_Layer: 0
   m_Name: Compute Hand Control V2
@@ -67806,20 +67805,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2052f403c100d8e45bd04d3f5aa5f369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joint0: {fileID: 1387972214}
-  joint4: {fileID: 1656624838}
-  joint8: {fileID: 1971897460}
-  joint12: {fileID: 296622639}
-  joint16: {fileID: 812567501}
-  joint20: {fileID: 46628173}
-  dist4_8: 0
-  dist12_0: 0
-  dist16_0: 0
-  dist20_0: 0
+  jointStorage: {fileID: 1149748765}
+  dist4_8_rh: 0
+  dist12_0_rh: 0
+  dist16_0_rh: 0
+  dist20_0_rh: 0
+  anchorTransform: {fileID: 1604213848}
   flagSphere: {fileID: 8510983}
   greenMat: {fileID: 2100000, guid: affe0b23b657a2a4485910449e2ae9a8, type: 2}
   redMat: {fileID: 2100000, guid: 18d3ed445bd542e4da9b69e0dbfa4511, type: 2}
-  detectionState: NONE
+  blueMat: {fileID: 2100000, guid: 2557198ca947f79479169985d6e7fc44, type: 2}
+  handControlData:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!4 &1149748764
 Transform:
   m_ObjectHideFlags: 0
@@ -67869,23 +67872,6 @@ MonoBehaviour:
   - {fileID: 634339034}
   - {fileID: 2001663790}
   - {fileID: 46628173}
---- !u!114 &1149748766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149748762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1726c23061eacfd4c87184a3e27c2a7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jointStorage: {fileID: 1149748765}
-  dist4_8_rh: 0
-  dist12_0_rh: 0
-  dist16_0_rh: 0
-  dist20_0_rh: 0
 --- !u!1 &1150141753
 GameObject:
   m_ObjectHideFlags: 0
@@ -124218,7 +124204,7 @@ PrefabInstance:
     - target: {fileID: 7420353491376657220, guid: 3c20e34209e3137419d55be4d729ec92,
         type: 3}
       propertyPath: serverIP
-      value: 130.63.212.226
+      value: 130.63.212.212
       objectReference: {fileID: 0}
     - target: {fileID: 7420353491376657220, guid: 3c20e34209e3137419d55be4d729ec92,
         type: 3}
@@ -124230,6 +124216,11 @@ PrefabInstance:
       propertyPath: computeHandControl
       value: 
       objectReference: {fileID: 293559163}
+    - target: {fileID: 7420353491376657220, guid: 3c20e34209e3137419d55be4d729ec92,
+        type: 3}
+      propertyPath: computeHandControlV2
+      value: 
+      objectReference: {fileID: 1149748763}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

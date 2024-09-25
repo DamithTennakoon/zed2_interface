@@ -33,7 +33,8 @@ public class udp_client : MonoBehaviour
     public keyboard_input keyboardInput;
 
     // Construct and instance of the hand_tracking class
-    public compute_hand_control computeHandControl;
+    //public compute_hand_control computeHandControl;
+    public compute_hand_control_v2 computeHandControlV2;
 
     // Reference data_handler class
     public data_handler dataHandler;
@@ -64,7 +65,7 @@ public class udp_client : MonoBehaviour
                 if (keyboardInput.keydown == "INPUT SYSTEM 0")
                 {
                     // Retrieve input data from Hand Tracking System 
-                    messageTX = dataHandler.convertHandTrackedData(computeHandControl.handControlData);
+                    messageTX = dataHandler.convertHandTrackedData(computeHandControlV2.handControlData);
                 }
                 else
                 { 

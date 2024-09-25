@@ -1,5 +1,6 @@
 // Objective: Record the distances between specific joints.
 // Dependencies: <joint_storage.cs>
+// Author: Damith Tennakoon
 // NOTE: AS A PART OF HRI VERSION II (SECOND YEAR OF MASTER'S)
 
 using System.Collections;
