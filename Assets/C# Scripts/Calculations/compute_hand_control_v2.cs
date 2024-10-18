@@ -83,6 +83,11 @@ public class compute_hand_control_v2 : MonoBehaviour
         else // When no pinch and no grip
         {
             flagSphere.GetComponent<MeshRenderer>().material = redMat;
+
+            for (int i = 0; i < 3; i++)
+            {
+                handControlData[i] = 0.0f; // Zero the direction vector
+            }
         }
         
     }

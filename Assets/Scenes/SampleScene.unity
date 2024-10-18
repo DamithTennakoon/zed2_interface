@@ -124149,7 +124149,7 @@ PrefabInstance:
     - target: {fileID: 3233586317470110687, guid: 3c20e34209e3137419d55be4d729ec92,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6916078850367191070, guid: 3c20e34209e3137419d55be4d729ec92,
         type: 3}
@@ -124204,7 +124204,7 @@ PrefabInstance:
     - target: {fileID: 7420353491376657220, guid: 3c20e34209e3137419d55be4d729ec92,
         type: 3}
       propertyPath: serverIP
-      value: 130.63.212.212
+      value: 130.63.213.25
       objectReference: {fileID: 0}
     - target: {fileID: 7420353491376657220, guid: 3c20e34209e3137419d55be4d729ec92,
         type: 3}
@@ -124602,7 +124602,7 @@ PrefabInstance:
     - target: {fileID: 9104468384350364940, guid: d8d68e727368ed84fb246edfa55deb35,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
