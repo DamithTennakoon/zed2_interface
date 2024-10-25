@@ -137,10 +137,12 @@ public class compute_hand_control_v2 : MonoBehaviour
             {
                 if (gripCount == 2) // Open gripper state
                 {
+                    handControlData[6] = 1.0f;
                     gripperFlagSphere.GetComponent<MeshRenderer>().material = purpleMat;
                 }
                 else if (gripCount == 3) // Close gripper state
                 {
+                    handControlData[6] = 0.0f;
                     gripperFlagSphere.GetComponent<MeshRenderer>().material = redMat;
                 }
 
