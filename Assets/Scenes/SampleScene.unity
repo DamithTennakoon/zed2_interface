@@ -67932,9 +67932,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  gripCount: 0
-  gripTimer: 0
-  isGripping: 0
 --- !u!4 &1149748764
 Transform:
   m_ObjectHideFlags: 0
@@ -124366,7 +124363,7 @@ PrefabInstance:
     - target: {fileID: 7420353491376657220, guid: 3c20e34209e3137419d55be4d729ec92,
         type: 3}
       propertyPath: serverIP
-      value: 130.63.213.25
+      value: 130.63.213.202
       objectReference: {fileID: 0}
     - target: {fileID: 7420353491376657220, guid: 3c20e34209e3137419d55be4d729ec92,
         type: 3}
@@ -124764,7 +124761,7 @@ PrefabInstance:
     - target: {fileID: 9104468384350364940, guid: d8d68e727368ed84fb246edfa55deb35,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
