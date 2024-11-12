@@ -28,7 +28,7 @@ public class WriteSerialData : MonoBehaviour
     private static void DataThread() {
         // Initialize the Serial Port variable to corresponding USB port
         //string SerialPortPath = "/dev/cu.usbmodem143301";
-        sp = new SerialPort("COM4", 115200);
+        sp = new SerialPort("COM6", 9600);
 
         // Initialize OutGoingMsg as an empty string
         OutGoingMsg = "";
