@@ -41,7 +41,7 @@ public class compute_hand_control_v2 : MonoBehaviour
     private float dist20_0_rh_grip_thresh = 0.09f;
 
     // Define variables for calculations
-    public float[] handControlData = new float[7]; // Transmission data array to ROS server
+    public float[] handControlData = new float[9]; // Transmission data array to ROS server
     private int gripCount = 0; // Number of pinches detected
     private float gripTimer = 0.0f; // Timer to detect consecutive pinches (countdown begins)
     private float gripWindow = 1.0f; // Fixed time window to register multiple pinches
