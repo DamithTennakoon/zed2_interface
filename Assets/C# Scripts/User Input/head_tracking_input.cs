@@ -37,11 +37,11 @@ public class head_tracking_input : MonoBehaviour
 
         if (hmdTransform.localEulerAngles.y > 180f)
         {
-            hmdYaw = hmdTransform.localEulerAngles.y - 360;
+            hmdYaw = (-1)*(hmdTransform.localEulerAngles.y - 360);
         }
         else
         {
-            hmdYaw = hmdTransform.localEulerAngles.y;
+            hmdYaw = (-1)*(hmdTransform.localEulerAngles.y);
         }
 
         // Inject head tracking data to Hand Control Data object
