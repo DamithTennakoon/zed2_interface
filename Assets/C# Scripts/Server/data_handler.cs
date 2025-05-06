@@ -8,6 +8,7 @@ public class data_handler : MonoBehaviour
 {
     // Define data codes
     public string htcDataCode = "HTC";
+    public string grcDataCode = "GRC";
 
     // Define method to handle the hand tracking data and convert to a transmitting String message
     // OUT FORMAT: "X.XXX, X.XXX, X,XXX ...."
@@ -36,5 +37,13 @@ public class data_handler : MonoBehaviour
 
         // Return the resulting robot joint angles array
         return jointAnglesArray;
+    }
+
+    // FUNCTION: Inputs a vector3 and outputs a string of format [GRC, X.XXX, X.XXX, X.XXX]
+    public string convertGlobalRobotControl(Vector3 TargetPosition, Quaternion TargetRotation)
+    {
+        string result = grcDataCode + "," + TargetPosition[0] + "," + TargetPosition[1] + "," + TargetPosition[2];
+        result = result + "," + TargetRotation.x + "," + TargetRotation.y + "," + TargetRotation.z + "," + TargetRotation.w;
+        return result;
     }
 }

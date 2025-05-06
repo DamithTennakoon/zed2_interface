@@ -1,19 +1,14 @@
-// Goal: A UDP (User Datagram Protocol) client connecting to a server ip and port to transmit messages in real-time
-// Dependencies: keyboard_input.cs
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Required Imports for system
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System;
-using System.Threading.Tasks; // Import System.Threading.Tasks for async operations
+using System.Threading.Tasks;
 
-
-public class udp_client : MonoBehaviour
+public class global_udp_client : MonoBehaviour
 {
     // Define server IP and socket number
     public string serverIP = "130.63.230.126";
@@ -39,9 +34,6 @@ public class udp_client : MonoBehaviour
     // Reference data_handler class
     public data_handler dataHandler;
 
-    // NEW CODE: Reference the global_robot_ctrl class
-    public global_robot_ctrl GlobalRobotCtrl;
-
     void Start()
     {
         // Create an instance of the UDP cleint
@@ -65,17 +57,13 @@ public class udp_client : MonoBehaviour
             while (true)
             {
                 // Priority input system: if there is no data coming from the keyboard, prioritze the hand tracking system as the input system, else (there is keyboard input), prioritize the keyboard input system
-                if ((keyboardInput.keydown == "INPUT SYSTEM 0") && (GlobalRobotCtrl) && (GlobalRobotCtrl.IsControlActive))
-                {
-                    messageTX = dataHandler.convertGlobalRobotControl(GlobalRobotCtrl.TargetEndEffectorPos, GlobalRobotCtrl.TargetEndEffectorRot);
-                }
-                else if (keyboardInput.keydown == "INPUT SYSTEM 0")
+                if (keyboardInput.keydown == "INPUT SYSTEM 0")
                 {
                     // Retrieve input data from Hand Tracking System 
                     messageTX = dataHandler.convertHandTrackedData(computeHandControlV2.handControlData);
                 }
                 else
-                { 
+                {
                     // Retrieve input data from the Keyboard System
                     messageTX = keyboardInput.keydown; // Already a single string value 
                 }

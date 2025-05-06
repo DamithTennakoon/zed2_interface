@@ -74,7 +74,8 @@ public class keyboard_input : MonoBehaviour
         else
         {
             // Return NONE when keys are not pressed
-            keydown = "NONE";
+            //keydown = "NONE";
+            keydown = "INPUT SYSTEM 0";
         }
         // Debug key to console
         Debug.Log("KEYDOWN DETECTED: " + keydown);
