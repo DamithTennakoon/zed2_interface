@@ -28,6 +28,7 @@ public class point_extraction : MonoBehaviour
     [SerializeField] private bool Logger = false;
     private Dictionary<Vector3Int, Color> VoxelMap = new Dictionary<Vector3Int, Color>(); // Define a map to store the voxel values
     public float VoxelResolution = 0.01f; // Define the size of 1 cube in the voxel map - default 1cm spatial resolution
+    public bool HeatMap = false;
 
     // Define ZED objects
     private ZEDCamera ZEDCamera;
@@ -41,6 +42,7 @@ public class point_extraction : MonoBehaviour
         uint mHeight = (uint)ZEDCamera.ImageHeight;
         PointCloud.Create(mWidth, mHeight, ZEDMat.MAT_TYPE.MAT_32F_C4, ZEDMat.MEM.MEM_CPU); // Create the point cloud
         Debug.Log("Init res: " + ZEDCamera.ImageWidth + "x" + ZEDCamera.ImageHeight);
+        
     }
 
     void Update()
@@ -62,26 +64,51 @@ public class point_extraction : MonoBehaviour
                 // Retrieve the values from the point cloud material
                 PointCloud.GetValue(x, y, out PCValue, ZEDMat.MEM.MEM_CPU); // Extract the XYZRGBA value for this pixel
                 Vector3 Position = new Vector3(PCValue.r, PCValue.g, PCValue.b);
-                float PackedColour = PCValue.a;
-                uint packed = System.BitConverter.ToUInt32(System.BitConverter.GetBytes(PackedColour), 0);
 
-                // Extract individual color bytes using bit masking
-                byte r = (byte)((packed >> 0) & 0xFF);  // Red is in the lowest byte
-                byte g = (byte)((packed >> 8) & 0xFF);  // Green is next
-                byte b = (byte)((packed >> 16) & 0xFF); // Blue is third
-                byte a = (byte)((packed >> 24) & 0xFF); // Alpha is highest byte
-                Color Colour = new Color(r / 255f, g / 255f, b / 255f, a / 255f); // Convert to Unity Color (0–1 range)
-
-                // Skip to next iteration of the loop the data is not valid
-                float Range = Position.magnitude;
-                if (!((Range < MaxDistanceThresh) && (Range > MinDistanceThresh)))
+                if (!(HeatMap))
                 {
-                    continue;
+                    float PackedColour = PCValue.a;
+                    uint packed = System.BitConverter.ToUInt32(System.BitConverter.GetBytes(PackedColour), 0);
+
+                    // Extract individual color bytes using bit masking
+                    byte r = (byte)((packed >> 0) & 0xFF);  // Red is in the lowest byte
+                    byte g = (byte)((packed >> 8) & 0xFF);  // Green is next
+                    byte b = (byte)((packed >> 16) & 0xFF); // Blue is third
+                    byte a = (byte)((packed >> 24) & 0xFF); // Alpha is highest byte
+                    Color Colour = new Color(r / 255f, g / 255f, b / 255f, a / 255f); // Convert to Unity Color (0–1 range)
+
+                    // Skip to next iteration of the loop the data is not valid
+                    float Range = Position.magnitude;
+                    if (!((Range < MaxDistanceThresh) && (Range > MinDistanceThresh)))
+                    {
+                        continue;
+                    }
+
+                    // Append the values to the lists
+                    PointPositions.Add(Position);
+                    PointColours.Add(Colour);
+                }
+                else
+                {
+                    float Range = Position.magnitude;
+
+                    // Skip to next iteration if invalid
+                    if (!((Range < MaxDistanceThresh) && (Range > MinDistanceThresh)))
+                    {
+                        continue;
+                    }
+
+                    // Normalize the range to [0, 1] for HSV mapping
+                    float normalizedDepth = Mathf.InverseLerp(MinDistanceThresh, MaxDistanceThresh, Range);
+
+                    // Use a color map where 0 = red, 1 = blue (HSV: hue goes from 0 to ~0.66)
+                    float hue = Mathf.Lerp(0.0f, 0.66f, normalizedDepth);
+                    Color Colour = Color.HSVToRGB(hue, 1f, 1f);
+
+                    PointPositions.Add(Position);
+                    PointColours.Add(Colour);
                 }
 
-                // Append the values to the lists
-                PointPositions.Add(Position);
-                PointColours.Add(Colour);
 
                 // Convert position vector to a Voxel key in the map
                 /*

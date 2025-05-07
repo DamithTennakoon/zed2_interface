@@ -51,7 +51,7 @@ public class joint_space_controller : MonoBehaviour
         jointTransforms[4].localEulerAngles = new Vector3(0f, robotJointAnglesArray[4], 0f);
 
         // Joint 6 - Rotation around Y-AXIS
-        jointTransforms[5].localEulerAngles = new Vector3(robotJointAnglesArray[5], 0f, 0f);
+        jointTransforms[5].localEulerAngles = new Vector3(-1 * robotJointAnglesArray[5], 0f, 0f);
 
     }
 }
